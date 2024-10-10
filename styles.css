@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+input,
+textarea {
+    background-color: #d3d3d3; /* Light grey color */
+}
+
+.personal-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates three equal-width columns */
+    gap: 5px; /* Adjusts the spacing between items if needed */
+}
+
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    background-color: #9a9494;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #9a9494;
+    padding: 20px;
+    border-bottom: 2px solid #e6e6e6;
+}
+
+.controls {
+    display: flex;        /* This will align the buttons in one row */
+    gap: 10px;            /* Optional: Adds spacing between the buttons */
+    justify-content: flex-start; /* Optional: Aligns buttons to the start, or you can use 'center' */
+}
+
+.controls button {
+    width: 180px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.analyze-button {
+    background-color: #28a745;
+}
+
+.profile-section {
+    background-color: #ffffff;
+    padding: 20px;
+    border-bottom: 2px solid #e6e6e6;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-status {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-badge {
+    background-color: #ffcd39;
+    color: #333333;
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+}
+
+.status-text {
+    color: #28a745;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.view-report {
+    border: none;
+    background: transparent;
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.profile-inputs input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-container {
+    padding: 20px;
+}
+
+.form-section {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.form-section h2 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: vertical;
+    height: 80px;
+}
+
+.add-button {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.skill-input {
+    flex: 1;
+}
+
+.skill-input label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+
+/* Overlay covering the entire screen */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: white;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%; /* Could be more or less, depending on screen size */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); /* Adds a shadow to the box */
+}
+
+/* Style the input field */
+input[type="text"] {
+    width: 95%; /* Full width minus padding */
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Makes sure the padding doesn't affect the width */
+}
+
+/* Style the buttons */
+button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 48%; /* Half width */
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.date-container {
+    display: flex; /* Use flex layout */
+    align-items: center; /* Vertically center align items */
+    gap: 10px; /* Space between elements */
+}
+
+.date-input {
+    width: 150px; /* Set a specific width for the date inputs */
+}
+
+.date-separator {
+    white-space: nowrap; /* Prevent the separator from wrapping onto the next line */
+}
+
+label {
+    font-weight: bold; /* Make labels bold */
+}
+
+

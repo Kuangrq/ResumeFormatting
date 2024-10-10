@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Resume Builder</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1>RESUME</h1>
+            <div class="controls">
+                <button>Rename</button>
+                <button>Export by PDF</button>
+                <button>Export by Word (.docx)</button>
+            </div>
+        </header>
+        <!-- Modal Overlay -->
+        <div id="modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content">
+                <h2>Change Resume Name</h2>
+                <input type="text" id="newName" value="Resume_Ruiqing Kuang">
+                <button onclick="closeModal()" style="background-color: #f44336;">Cancel</button>
+                <button onclick="updateName()" style="background-color: #4CAF50;">OK</button>  
+            </div>
+        </div>
+
+        <!-- Form Sections -->
+        <div class="form-container">
+            
+            <!-- Summary, Education, Work Experience, and Projects -->
+            <div class="form-section">
+                <!-- Personal Information -->
+                <h2>Name</h2>
+                <div class="personal-inputs">
+                    <input type="text" placeholder="Email...">
+                    <input type="text" placeholder="Phone...">
+                    <input type="text" placeholder="Location...">
+                    <input type="text" placeholder="LinkedIn URL...">
+                    <input type="text" placeholder="Github URL...">
+                    <input type="text" placeholder="Other URL...">
+                </div>
+                <br><hr><br>
+                
+                <!-- Summary -->
+                <h2>Summary</h2>
+                <div class="summary-inputs">
+                    <input type="text" placeholder="Add summary here...">
+                </div>
+                <br><hr><br>
+                
+                <!-- Education -->
+                <h2>Education</h2>
+                <div class="education-inputs">
+                    <input type="text" placeholder="School Name...">
+                    <div class="date-container">
+                        <label for="start-date">Start Date</label>
+                        <input type="month" id="start-date" class="date-input">
+                        <span class="date-separator">➜</span>
+                        <label for="end-date">End Date</label>
+                        <input type="month" id="end-date" class="date-input">
+                    </div>
+                    <input type="text" placeholder="Location...">
+                    <input type="text" placeholder="Degree & Majors...">
+                    <input type="text" placeholder="Awards & Coursework...">
+                </div>
+                <br><hr><br>
+
+                <h2>Work Experience</h2>
+                <div class="experience-inputs">
+                    <input type="text" placeholder="Company Name...">
+                    <div class="date-container">
+                        <label for="start-date">Start Date</label>
+                        <input type="month" id="start-date" class="date-input">
+                        <span class="date-separator">➜</span>
+                        <label for="end-date">End Date</label>
+                        <input type="month" id="end-date" class="date-input">
+                    </div>
+                    <input type="text" placeholder="Location...">
+                    <input type="text" placeholder="Job Title...">
+                </div>
+                    <input type="text" placeholder="Bullet Points...">
+                <br><hr><br>
+
+                <h2>Projects</h2>
+                <div class="projects-inputs">
+                    <input type="text" placeholder="Project Name...">
+                    <div class="date-container">
+                        <label for="start-date">Start Date</label>
+                        <input type="month" id="start-date" class="date-input">
+                        <span class="date-separator">➜</span>
+                        <label for="end-date">End Date</label>
+                        <input type="month" id="end-date" class="date-input">
+                    </div>
+                </div>
+                    <input type="text" placeholder="Bullet Points...">
+                <br><hr><br>
+
+                <h2>Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-input">
+                        <label>Languages:</label>
+                        <input type="text" placeholder="Add skill...">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
