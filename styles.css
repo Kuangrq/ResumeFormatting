@@ -118,7 +118,7 @@ textarea {
     padding: 20px;
 }
 
-.form-section {
+/* .form-section {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
@@ -131,7 +131,7 @@ textarea {
     font-weight: bold;
     color: #333333;
     margin-bottom: 15px;
-}
+} */
 
 input[type="text"], input[type="email"], input[type="tel"], textarea {
     width: 100%;
@@ -243,4 +243,18 @@ label {
     font-weight: bold; /* Make labels bold */
 }
 
+/* Common styles for all sections */
+.section-style {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
 
+.section-style h2 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 15px;
+}

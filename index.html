@@ -32,8 +32,8 @@
         <!-- Form Sections -->
         <div class="form-container">
             
-            <!-- Summary, Education, Work Experience, and Projects -->
-            <div class="form-section">
+            <!-- Basic Info -->
+            <div class="section-style basic-info-section">
                 <!-- Personal Information -->
                 <h2>Name</h2>
                 <div class="personal-inputs">
@@ -44,16 +44,18 @@
                     <input type="text" placeholder="Github URL...">
                     <input type="text" placeholder="Other URL...">
                 </div>
-                <br><hr><br>
+                
                 
                 <!-- Summary -->
                 <h2>Summary</h2>
                 <div class="summary-inputs">
                     <input type="text" placeholder="Add summary here...">
                 </div>
-                <br><hr><br>
-                
-                <!-- Education -->
+        
+            </div>
+
+            <!-- Education -->
+            <div class="section-style education-section">
                 <h2>Education</h2>
                 <div class="education-inputs">
                     <input type="text" placeholder="School Name...">
@@ -68,9 +70,15 @@
                     <input type="text" placeholder="Degree & Majors...">
                     <input type="text" placeholder="Awards & Coursework...">
                 </div>
-                <br><hr><br>
+                <button id="delete-education" style="background-color: #f44336;">- Delete</button> <!-- Delete button -->
+                <button id="add-education" style="background-color: #4CAF50;">+ Education</button> <!-- Button to add an education section -->
+                
+            </div>
+         
 
-                <h2>Work Experience</h2>
+            <!-- Experience -->
+            <div class="section-style experience-section">
+                <h2>Experience</h2>
                 <div class="experience-inputs">
                     <input type="text" placeholder="Company Name...">
                     <div class="date-container">
@@ -82,10 +90,13 @@
                     </div>
                     <input type="text" placeholder="Location...">
                     <input type="text" placeholder="Job Title...">
-                </div>
                     <input type="text" placeholder="Bullet Points...">
-                <br><hr><br>
+                </div>
+            </div>       
+      
 
+            <!-- Projects -->
+            <div class="section-style projects-section">
                 <h2>Projects</h2>
                 <div class="projects-inputs">
                     <input type="text" placeholder="Project Name...">
@@ -96,14 +107,16 @@
                         <label for="end-date">End Date</label>
                         <input type="month" id="end-date" class="date-input">
                     </div>
-                </div>
                     <input type="text" placeholder="Bullet Points...">
-                <br><hr><br>
+                </div>
+            </div>
 
+
+            <!-- Skills -->
+            <div class="section-style skills-section">
                 <h2>Skills</h2>
                 <div class="skills-container">
                     <div class="skill-input">
-                        <label>Languages:</label>
                         <input type="text" placeholder="Add skill...">
                     </div>
                 </div>
