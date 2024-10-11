@@ -258,3 +258,9 @@ label {
     color: #333333;
     margin-bottom: 15px;
 }
+
+.divider {
+    height: 2px; /* Set the height of the divider */
+    background-color: #ccc; /* Light grey color for the divider */
+    margin: 20px 0; /* Add some vertical space around the divider */
+}

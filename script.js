@@ -16,44 +16,87 @@ function updateName() {
     closeModal();
 }
 
-document.getElementById('add-education').addEventListener('click', function() {
-    const educationContainer = document.querySelector('.education-section');
-    const newEducationInputs = document.createElement('div');
-    newEducationInputs.className = 'education-inputs';
-    newEducationInputs.innerHTML = `
-        <input type="text" placeholder="School Name...">
-        <div class="date-container">
-            <label>Start Date</label>
-            <input type="month" class="date-input">
-            <span class="date-separator">➜</span>
-            <label>End Date</label>
-            <input type="month" class="date-input">
-        </div>
-        <input type="text" placeholder="Location...">
-        <input type="text" placeholder="Degree & Majors...">
-        <input type="text" placeholder="Awards & Coursework...">
-    `;
+// Define HTML for new inputs for each section
+const educationInputsHTML = `
+    <input type="text" placeholder="School Name...">
+    <div class="date-container">
+        <label>Start Date</label>
+        <input type="month" class="date-input">
+        <span class="date-separator">➜</span>
+        <label>End Date</label>
+        <input type="month" class="date-input">
+    </div>
+    <input type="text" placeholder="Location...">
+    <input type="text" placeholder="Degree & Majors...">
+    <input type="text" placeholder="Awards & Coursework...">`; // Fill in with actual HTML content
+const experienceInputsHTML = `
+    <input type="text" placeholder="Company Name...">
+    <div class="date-container">
+        <label>Start Date</label>
+        <input type="month" class="date-input">
+        <span class="date-separator">➜</span>
+        <label>End Date</label>
+        <input type="month" class="date-input">
+    </div>
+    <input type="text" placeholder="Location...">
+    <input type="text" placeholder="Job Title...">
+    <input type="text" placeholder="Bullet Points...">`; // Fill in with actual HTML content
+const projectsInputsHTML = `
+    <input type="text" placeholder="Project Name...">
+    <div class="date-container">
+        <label>Start Date</label>
+        <input type="month" class="date-input">
+        <span class="date-separator">➜</span>
+        <label>End Date</label>
+        <input type="month" class="date-input">
+    </div>
+    <input type="text" placeholder="Bullet Points...">`; // Fill in with actual HTML content
 
-    // Insert the new education inputs before the buttons
-    educationContainer.insertBefore(newEducationInputs, this);
+function setupSectionControls(addButtonId, deleteButtonId, sectionClass, inputsClass, inputsHTML) {
+    document.getElementById(addButtonId).addEventListener('click', function() {
+        const container = document.querySelector('.' + sectionClass);
+        const newInputs = document.createElement('div');
+        newInputs.className = inputsClass;
+        newInputs.innerHTML = inputsHTML;
 
-    // Move the Delete and Add buttons to the end of the container
-    const addButton = this;
-    const deleteButton = document.getElementById('delete-education');
-    educationContainer.appendChild(deleteButton); // Append Delete first
-    educationContainer.appendChild(addButton); // Then Append Add
-});
+        const allInputs = container.querySelectorAll('.' + inputsClass);
+        if (allInputs.length > 0) {
+            const divider = document.createElement('div');
+            divider.className = 'divider';
+            container.appendChild(divider);
+        }
 
-document.getElementById('delete-education').addEventListener('click', function() {
-    const educationContainer = document.querySelector('.education-section');
-    const allEducationInputs = educationContainer.querySelectorAll('.education-inputs');
-    if (allEducationInputs.length > 1) { // Ensure at least one section remains
-        educationContainer.removeChild(allEducationInputs[allEducationInputs.length - 1]);
-    }
+        container.appendChild(newInputs);
 
-    // Move the Delete and Add buttons to the end of the container
-    const addButton = document.getElementById('add-education');
-    const deleteButton = this;
-    educationContainer.appendChild(deleteButton); // Append Delete first
-    educationContainer.appendChild(addButton); // Then Append Add
-});
+        const addButton = this;
+        const deleteButton = document.getElementById(deleteButtonId);
+        container.appendChild(deleteButton);
+        container.appendChild(addButton);
+    });
+
+    document.getElementById(deleteButtonId).addEventListener('click', function() {
+        const container = document.querySelector('.' + sectionClass);
+        const allInputs = container.querySelectorAll('.' + inputsClass);
+        const allDividers = container.querySelectorAll('.divider');
+
+        if (allInputs.length > 1) {
+            const lastInput = allInputs[allInputs.length - 1];
+            container.removeChild(lastInput);
+
+            if (allInputs.length > 1) {
+                const lastDivider = allDividers[allDividers.length - 1];
+                container.removeChild(lastDivider);
+            }
+        }
+
+        const addButton = document.getElementById(addButtonId);
+        const deleteButton = this;
+        container.appendChild(deleteButton);
+        container.appendChild(addButton);
+    });
+}
+
+// 初始化 Education, Experience, Projects 部分的按钮功能
+setupSectionControls('add-education', 'delete-education', 'education-section', 'education-inputs', educationInputsHTML);
+setupSectionControls('add-experience', 'delete-experience', 'experience-section', 'experience-inputs', experienceInputsHTML);
+setupSectionControls('add-projects', 'delete-projects', 'projects-section', 'projects-inputs', projectsInputsHTML);
