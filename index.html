@@ -10,9 +10,10 @@
 
 <body>
     <div class="container">
+        
         <!-- Header Section -->
         <header class="header">
-            <h1>RESUME</h1>
+            <h1>Resume_Ruiqing Kuang</h1>
             <div class="controls">
                 <button>Rename</button>
                 <button>Export by PDF</button>
@@ -35,7 +36,7 @@
             <!-- Basic Info -->
             <div class="section-style basic-info-section">
                 <!-- Personal Information -->
-                <h2>Name</h2>
+                <h2 contenteditable="true">Name</h2>
                 <div class="personal-inputs">
                     <input type="text" placeholder="Email...">
                     <input type="text" placeholder="Phone...">
@@ -91,6 +92,7 @@
                     <input type="text" placeholder="Location...">
                     <input type="text" placeholder="Job Title...">
                     <input type="text" placeholder="Bullet Points...">
+                    <button id="add-experience-bullet-point" class="add-button">+ Bullet Points</button>
                 </div>
                 <button id="delete-experience" style="background-color: #f44336;">- Delete</button>
                 <button id="add-experience" style="background-color: #4CAF50;">+ Experience</button>
@@ -110,6 +112,7 @@
                         <input type="month" id="end-date" class="date-input">
                     </div>
                     <input type="text" placeholder="Bullet Points...">
+                    <button id="add-project-bullet-point" class="add-button">+ Bullet Points</button>
                 </div>
                 <button id="delete-projects" style="background-color: #f44336;">- Delete</button>
                 <button id="add-projects" style="background-color: #4CAF50;">+ Projects</button>
@@ -119,13 +122,15 @@
             <!-- Skills -->
             <div class="section-style skills-section">
                 <h2>Skills</h2>
-                <div class="skills-container">
-                    <div class="skill-input">
-                        <input type="text" placeholder="Add skill...">
-                    </div>
+                <div id="skills-tags"></div>
+                <div class="skill-input">
+                    <input type="text" id="skill-input" placeholder="Add skill..." onkeyup="filterSkills(this.value)">
+                    <button id="add-skill-button" onclick="addCustomSkill()" style="background-color: #4CAF50;">+ Add</button>
+                    <div id="suggestions-box" class="suggestions-box"></div>
                 </div>
-
             </div>
+
+            
         </div>
     </div>
 
