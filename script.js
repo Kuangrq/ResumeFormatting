@@ -162,11 +162,15 @@ const skills = [
 ];
 
 function filterSkills(input) {
-    const suggestions = skills.filter(skill => {
-        // Convert the skill name to lowercase and check if the input string is the starting part of it
-        return skill.toLowerCase().startsWith(input.toLowerCase());
-    });
     const suggestionsBox = document.getElementById('suggestions-box');
+    
+    // Only filter skills if the input is not empty
+    if (input.trim() === '') {
+        suggestionsBox.style.display = 'none'; // Hide the suggestions box if the input is empty
+        return;
+    }
+
+    const suggestions = skills.filter(skill => skill.toLowerCase().startsWith(input.toLowerCase()));
     suggestionsBox.innerHTML = '';  // Clear previous suggestions
 
     if (suggestions.length > 0) {
@@ -204,6 +208,13 @@ function addSkill(skill) {
     // Add functionality to remove the skill when clicked
     span.onclick = function() { this.remove(); };
 
+    // Enable drag-and-drop functionality
+    span.setAttribute('draggable', true);
+    span.ondragstart = function(event) {
+        event.dataTransfer.setData('text/plain', skill); // Store the skill data
+        event.dataTransfer.effectAllowed = 'move'; // Indicate that this is a move operation
+    };
+
     skillsTags.appendChild(span);
 
     // Clear the input field and hide the suggestions box
@@ -211,15 +222,36 @@ function addSkill(skill) {
     document.getElementById('suggestions-box').style.display = 'none';
 }
 
+// Add event listeners for drag-and-drop
+const skillsTags = document.getElementById('skills-tags');
+
+skillsTags.ondragover = function(event) {
+    event.preventDefault(); // Prevent default to allow drop
+};
+
+skillsTags.ondrop = function(event) {
+    event.preventDefault(); // Prevent default behavior
+    const skill = event.dataTransfer.getData('text/plain'); // Get the dragged skill
+    const draggedElement = Array.from(skillsTags.children).find(tag => tag.textContent === skill); // Find the dragged element
+
+    // Insert the dragged element before the element that was dropped on
+    const target = event.target;
+    if (target && target.className === 'skill-tag') {
+        skillsTags.insertBefore(draggedElement, target);
+    } else {
+        skillsTags.appendChild(draggedElement); // If dropped outside, append to the end
+    }
+};
+
 function addCustomSkill() {
     const inputField = document.getElementById('skill-input');
-    const skill = inputField.value.trim(); // 获取用户输入并去除前后空格
+    const skill = inputField.value.trim(); // Get the user input and remove leading and trailing whitespace
 
     if (skill === '') {
-        alert('Please enter a skill to add.'); // 如果输入为空，提示用户
+        alert('Please enter a skill to add.'); // If the input is empty, prompt the user
         return;
     }
 
-    // 调用 addSkill 函数将自定义技能添加到技能标签中
+    // Call the addSkill function to add the custom skill to the skill tags
     addSkill(skill);
 }
