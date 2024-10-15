@@ -242,3 +242,43 @@ label {
 
     width: 100px; /* 设置按钮的宽度 */
 }
+
+/* Sections Container */
+#sections-container {
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+}
+
+.draggable-section {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #f9f9f9;
+    cursor: move; /* Change cursor to indicate draggable */
+    transition: background-color 0.3s;
+}
+
+.draggable-section:hover {
+    background-color: #e0e0e0; /* Change background on hover */
+}
+
+#reference-line {
+    display: none; /* Initially hidden */
+    height: 2px; /* Height of the reference line */
+    background-color: #007bff; /* Color of the reference line */
+    position: absolute; /* Position it absolutely */
+    width: 100%; /* Full width */
+    z-index: 10; /* Ensure it appears above other elements */
+}
+
+/* Highlighting the target section */
+.highlight {
+    border: 2px dashed #007bff; /* Dashed border to indicate a valid drop target */
+    background-color: rgba(0, 123, 255, 0.1); /* Light blue background for better visibility */
+}
+
+/* Styling for the dragging element */
+.dragging {
+    opacity: 0.5; /* Make the dragged element semi-transparent */
+    transition: opacity 0.2s ease; /* Smooth transition for opacity */
+}

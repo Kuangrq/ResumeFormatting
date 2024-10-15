@@ -222,27 +222,6 @@ function addSkill(skill) {
     document.getElementById('suggestions-box').style.display = 'none';
 }
 
-// Add event listeners for drag-and-drop
-const skillsTags = document.getElementById('skills-tags');
-
-skillsTags.ondragover = function(event) {
-    event.preventDefault(); // Prevent default to allow drop
-};
-
-skillsTags.ondrop = function(event) {
-    event.preventDefault(); // Prevent default behavior
-    const skill = event.dataTransfer.getData('text/plain'); // Get the dragged skill
-    const draggedElement = Array.from(skillsTags.children).find(tag => tag.textContent === skill); // Find the dragged element
-
-    // Insert the dragged element before the element that was dropped on
-    const target = event.target;
-    if (target && target.className === 'skill-tag') {
-        skillsTags.insertBefore(draggedElement, target);
-    } else {
-        skillsTags.appendChild(draggedElement); // If dropped outside, append to the end
-    }
-};
-
 function addCustomSkill() {
     const inputField = document.getElementById('skill-input');
     const skill = inputField.value.trim(); // Get the user input and remove leading and trailing whitespace
@@ -255,3 +234,74 @@ function addCustomSkill() {
     // Call the addSkill function to add the custom skill to the skill tags
     addSkill(skill);
 }
+
+// Add event listeners for drag-and-drop
+const sectionsContainer = document.getElementById('sections-container');
+const referenceLine = document.getElementById('reference-line');
+
+sectionsContainer.addEventListener('dragstart', (event) => {
+    if (event.target.classList.contains('draggable-section')) {
+        event.dataTransfer.setData('text/plain', event.target.id);
+        event.target.classList.add('dragging'); // Add a class to the dragged element for styling
+    }
+});
+
+sectionsContainer.addEventListener('dragover', (event) => {
+    event.preventDefault(); // Prevent default to allow drop
+    const target = event.target;
+
+    // Show the reference line if the target is a draggable section
+    if (target && target.classList.contains('draggable-section')) {
+        const rect = target.getBoundingClientRect();
+        referenceLine.style.top = `${rect.top + window.scrollY}px`; // Position the line at the top of the target
+        referenceLine.style.display = 'block'; // Show the reference line
+
+        // Highlight the target section
+        target.classList.add('highlight');
+    }
+});
+
+sectionsContainer.addEventListener('dragleave', (event) => {
+    // Hide the reference line and remove highlight when leaving the section
+    referenceLine.style.display = 'none';
+    if (event.target.classList.contains('draggable-section')) {
+        event.target.classList.remove('highlight');
+    }
+});
+
+sectionsContainer.addEventListener('drop', (event) => {
+    event.preventDefault(); // Prevent default behavior
+    const draggedId = event.dataTransfer.getData('text/plain'); // Get the ID of the dragged section
+    const draggedElement = document.getElementById(draggedId); // Find the dragged element
+    const target = event.target; // Get the target element where the dragged element is dropped
+
+    // Check if the target is a section and not the dragged element itself
+    if (target && target.classList.contains('draggable-section') && target !== draggedElement) {
+        const targetRect = target.getBoundingClientRect();
+
+        // Determine the position of the dragged element relative to the target
+        if (event.clientY < targetRect.top + targetRect.height / 2) {
+            // If the dragged element is above the middle of the target, insert before the target
+            sectionsContainer.insertBefore(draggedElement, target);
+        } else {
+            // If the dragged element is below the middle of the target, insert after the target
+            sectionsContainer.insertBefore(draggedElement, target.nextSibling);
+        }
+    }
+
+    // Hide the reference line after dropping
+    referenceLine.style.display = 'none';
+    draggedElement.classList.remove('dragging'); // Remove dragging class
+    if (target) {
+        target.classList.remove('highlight'); // Remove highlight from target
+    }
+});
+
+// Hide the reference line when dragging ends
+sectionsContainer.addEventListener('dragend', (event) => {
+    referenceLine.style.display = 'none';
+    const draggedElement = document.querySelector('.dragging');
+    if (draggedElement) {
+        draggedElement.classList.remove('dragging'); // Remove dragging class
+    }
+});

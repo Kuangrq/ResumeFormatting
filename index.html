@@ -31,12 +31,12 @@
         </div>
 
         <!-- Form Sections -->
-        <div class="form-container">
+        <div class="form-container" id="sections-container">
             
             <!-- Basic Info -->
             <div class="section-style basic-info-section">
                 <!-- Personal Information -->
-                <h2 contenteditable="true">Name</h2>
+                <h2 contenteditable="true">Ruiqing Kuang</h2>
                 <div class="personal-inputs">
                     <input type="text" placeholder="Email...">
                     <input type="text" placeholder="Phone...">
@@ -56,7 +56,7 @@
             </div>
 
             <!-- Education -->
-            <div class="section-style education-section">
+            <div class="section-style education-section draggable-section" id="education-section" draggable="true">
                 <h2>Education</h2>
                 <div class="education-inputs">
                     <input type="text" placeholder="School Name...">
@@ -71,14 +71,13 @@
                     <input type="text" placeholder="Degree & Majors...">
                     <input type="text" placeholder="Awards & Coursework...">
                 </div>
-                <button id="delete-education" style="background-color: #f44336;">- Delete</button> <!-- Delete button -->
-                <button id="add-education" style="background-color: #4CAF50;">+ Education</button> <!-- Button to add an education section -->
-                
+                <button id="delete-education" style="background-color: #f44336;">- Delete</button>
+                <button id="add-education" style="background-color: #4CAF50;">+ Education</button>
             </div>
          
 
             <!-- Experience -->
-            <div class="section-style experience-section">
+            <div class="section-style experience-section draggable-section" id="experience-section" draggable="true">
                 <h2>Experience</h2>
                 <div class="experience-inputs">
                     <input type="text" placeholder="Company Name...">
@@ -100,7 +99,7 @@
       
 
             <!-- Projects -->
-            <div class="section-style projects-section">
+            <div class="section-style projects-section draggable-section" id="projects-section" draggable="true">
                 <h2>Projects</h2>
                 <div class="projects-inputs">
                     <input type="text" placeholder="Project Name...">
@@ -120,7 +119,7 @@
 
 
             <!-- Skills -->
-            <div class="section-style skills-section">
+            <div class="section-style skills-section draggable-section" id="skills-section" draggable="true">
                 <h2>Skills</h2>
                 <div id="skills-tags" class="skills-tags"></div>
                 <div class="skill-input">
@@ -132,6 +131,7 @@
 
             
         </div>
+        <div id="reference-line" style="display: none; height: 2px; background-color: #007bff; position: absolute; width: 100%; z-index: 10;"></div>
     </div>
 
     <script src="script.js"></script>
