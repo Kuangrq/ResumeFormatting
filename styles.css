@@ -92,6 +92,31 @@ input{
     gap: 5px; /* Adjusts the spacing between items if needed */
 }
 
+.input-container {
+    position: relative; /* Position relative to allow absolute positioning of the icon */
+    margin-bottom: 16px; /* Space between input fields */
+}
+
+.input-with-icon {
+    width: 95%;
+    height: 40px; /* Set a fixed height for the input field */
+    padding: 10px 40px; /* Add padding to the left and right for the icon */
+    background-color: #d3d3d3; /* Light grey color */
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 4px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.input-icon {
+    position: absolute; /* Position the icon absolutely */
+    left: 10px; /* Adjust as needed */
+    top: 45%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+    width: 24px; /* Set the desired width */
+    height: 24px; /* Set the desired height */
+    pointer-events: none; /* Prevent mouse events on the icon */
+}
+
 .add-button {
     margin-top: 10px;
     background-color: #007bff;
@@ -282,3 +307,6 @@ label {
     opacity: 0.5; /* Make the dragged element semi-transparent */
     transition: opacity 0.2s ease; /* Smooth transition for opacity */
 }
+
+
+
