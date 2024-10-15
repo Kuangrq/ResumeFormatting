@@ -238,6 +238,7 @@ function addCustomSkill() {
 // Add event listeners for drag-and-drop
 const sectionsContainer = document.getElementById('sections-container');
 const referenceLine = document.getElementById('reference-line');
+let scrollInterval; // Variable to hold the scroll interval
 
 sectionsContainer.addEventListener('dragstart', (event) => {
     if (event.target.classList.contains('draggable-section')) {
@@ -258,6 +259,16 @@ sectionsContainer.addEventListener('dragover', (event) => {
 
         // Highlight the target section
         target.classList.add('highlight');
+    }
+
+    // Scroll the page if the mouse is near the top or bottom
+    const scrollThreshold = 50; // Distance from the top/bottom to start scrolling
+    if (event.clientY < scrollThreshold) {
+        // Scroll up
+        window.scrollBy(0, -10); // Adjust the scroll speed as needed
+    } else if (window.innerHeight - event.clientY < scrollThreshold) {
+        // Scroll down
+        window.scrollBy(0, 10); // Adjust the scroll speed as needed
     }
 });
 
@@ -304,4 +315,9 @@ sectionsContainer.addEventListener('dragend', (event) => {
     if (draggedElement) {
         draggedElement.classList.remove('dragging'); // Remove dragging class
     }
+});
+
+// Stop scrolling when dragging ends
+sectionsContainer.addEventListener('dragend', () => {
+    clearInterval(scrollInterval);
 });
