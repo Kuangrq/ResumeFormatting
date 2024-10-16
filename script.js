@@ -116,24 +116,44 @@ function addBulletPoint(container) {
     const inputGroup = document.createElement('div');
     inputGroup.className = 'input-group';
 
+    // Create a container for the input, icon, and delete button
+    const inputContainer = document.createElement('div');
+    inputContainer.className = 'input-container';
+
     // Create the new input field
     const newInput = document.createElement('input');
     newInput.type = 'text';
     newInput.placeholder = 'Bullet Point...';
-    newInput.className = 'bullet-point';
+    newInput.className = 'input-with-icon bullet-point'; // Ensure it has the correct class
 
-    // Create the delete button
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'X';
-    deleteButton.className = 'delete-bullet-point';
-    deleteButton.onclick = function() {
+    // Create the bullet point icon
+    const bulletIcon = document.createElement('img');
+    bulletIcon.src = 'icon/bullet.png'; // Ensure the path is correct
+    bulletIcon.alt = 'Bullet Point Icon';
+    bulletIcon.className = 'input-icon';
+    bulletIcon.style.width = '15px'; // Set the desired width
+    bulletIcon.style.height = '15px'; // Set the desired height
+
+    // Create the delete icon
+    const deleteIcon = document.createElement('img');
+    deleteIcon.src = 'icon/bin.png'; // Ensure the path is correct
+    deleteIcon.alt = 'Delete Icon';
+    deleteIcon.className = 'delete-icon'; // Use a specific class for styling
+    deleteIcon.style.width = '15px'; // Set the desired width
+    deleteIcon.style.height = '15px'; // Set the desired height
+    deleteIcon.style.cursor = 'pointer'; // Change cursor to pointer for better UX
+    deleteIcon.onclick = function() {
         // Remove the input group from the container
         container.removeChild(inputGroup);
     };
 
-    // Append the input and delete button to the input group
-    inputGroup.appendChild(newInput);
-    inputGroup.appendChild(deleteButton);
+    // Append the input, bullet icon, and delete icon to the input container
+    inputContainer.appendChild(newInput);
+    inputContainer.appendChild(bulletIcon);
+    inputContainer.appendChild(deleteIcon); // Append the delete icon here
+
+    // Append the input container to the input group
+    inputGroup.appendChild(inputContainer); // Append the input container first
 
     // Insert the new group before the add button
     container.insertBefore(inputGroup, container.lastElementChild);

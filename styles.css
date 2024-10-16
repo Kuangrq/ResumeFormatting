@@ -93,13 +93,13 @@ input{
 }
 
 .input-container {
+    width: 100%;
     position: relative; /* Position relative to allow absolute positioning of the icon */
     margin-bottom: 16px; /* Space between input fields */
 }
 
 .input-with-icon {
     width: 95%;
-    height: 40px; /* Set a fixed height for the input field */
     padding: 10px 40px; /* Add padding to the left and right for the icon */
     background-color: #d3d3d3; /* Light grey color */
     border: 1px solid #ccc; /* Light grey border */
@@ -196,36 +196,21 @@ label {
 }
 
 .delete-bullet-point {
-    width: 40px; /* Adjust width to make the button square or as needed */
-    text-align: center; /* Center the 'x' text in the button */
-    margin-left: 5px;
+    width: 35px; /* Adjust width to make the button square or as needed */
+    height: 35px; /* Set height */
+    text-align: center; /* Center the 'X' text in the button */
+    margin-left: 5px; /* Space between the input and the button */
     color: #ff0000; /* Red color for the delete button */
     cursor: pointer;
-    background: #ffffff;
-    border: none;
-    font-size: 20px; /* Smaller font size */
-    padding: 5px; /* Smaller padding to reduce overall size */
-    line-height: 1; /* Adjust line height to align better with the input */
+    background: #ffffff; /* White background */
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 20px; /* Font size for the 'X' */
+    padding: 0; /* Remove padding to fit better */
+    line-height: 35px; /* Center the text vertically */
     display: inline-block; /* Ensure it does not take more space than necessary */
+    position: relative; /* Position relative to allow absolute positioning if needed */
 }
-
-/* Styles for skill tags */
-/* #skills-tags .skill-tag {
-    display: inline-block;
-    background-color: #4CAF50;
-    color: white;
-    padding: 5px;
-    margin: 2px;
-    border-radius: 5px;
-} */
-
-/* Styles for the suggestions box */
-/* #suggestions-box {
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ccc;
-    width: auto;
-} */
 
 /* Styles for skill tags */
 #skills-tags .skill-tag {
@@ -308,5 +293,7 @@ label {
     transition: opacity 0.2s ease; /* Smooth transition for opacity */
 }
 
-
-
+.delete-icon {
+    margin-left: 10px; /* Space between the input and the delete icon */
+    cursor: pointer; /* Change cursor to pointer for better UX */
+}
