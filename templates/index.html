@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../static/styles.css">
     <title>Resume Builder</title>
 </head>
 
@@ -16,8 +16,7 @@
             <h1>Resume_Ruiqing Kuang</h1>
             <div class="controls">
                 <button>Rename</button>
-                <button>Export by PDF</button>
-                <button>Export by Word (.docx)</button>
+                <button type="submit" form="resumeForm">Export by PDF</button>
             </div>
         </header>
         <!-- Modal Overlay -->
@@ -30,135 +29,132 @@
             </div>
         </div>
 
-        <!-- Form Sections -->
-        <div class="form-container" id="sections-container">
-            
-            <!-- Basic Info -->
-            <div class="section-style basic-info-section">
-                <!-- Personal Information -->
-                <h2 contenteditable="true">Ruiqing Kuang</h2>
-                <div class="personal-inputs">
-                    <div class="input-container">
-                        <input type="text" placeholder="Email..." class="input-with-icon">
-                        <img src="icon/email.png" alt="Email Icon" class="input-icon"> <!-- Email icon -->
+        <!-- Form Section -->
+        <form id="resumeForm" action="/generate_resume" method="POST">
+            <!-- Form Sections -->
+            <div class="form-container" id="sections-container">
+                
+                <!-- Basic Info -->
+                <div class="section-style basic-info-section">
+                    <!-- Personal Information -->
+                    <h2 contenteditable="true">Ruiqing Kuang</h2>
+                    <div class="personal-inputs">
+                        <div class="input-container">
+                            <input type="text" name="email" placeholder="Email..." class="input-with-icon">
+                            <img src="../static/icon/email.png" alt="Email Icon" class="input-icon"> <!-- Email icon -->
+                        </div>
+                        <div class="input-container">
+                            <input type="text" name="phone" placeholder="Phone..." class="input-with-icon">
+                            <img src="../static/icon/phone.png" alt="Phone Icon" class="input-icon"> <!-- Phone icon -->
+                        </div>
+                        <div class="input-container">
+                            <input type="text" name="location" placeholder="Location..." class="input-with-icon">
+                            <img src="../static/icon/address.png" alt="Location Icon" class="input-icon"> <!-- Location icon -->
+                        </div>
+                        <div class="input-container">
+                            <input type="text" name="linkedin" placeholder="LinkedIn URL..." class="input-with-icon">
+                            <img src="../static/icon/linkedin.png" alt="LinkedIn Icon" class="input-icon"> <!-- LinkedIn icon -->
+                        </div>
+                        <div class="input-container">
+                            <input type="text" name="github" placeholder="Github URL..." class="input-with-icon">
+                            <img src="../static/icon/github.png" alt="GitHub Icon" class="input-icon"> <!-- GitHub icon -->
+                        </div>
+                        <div class="input-container">
+                            <input type="text" name="other_url" placeholder="Other URL..." class="input-with-icon">
+                            <img src="../static/icon/url.png" alt="Other URL Icon" class="input-icon"> <!-- Other URL icon -->
+                        </div>
                     </div>
-                    <div class="input-container">
-                        <input type="text" placeholder="Phone..." class="input-with-icon">
-                        <img src="icon/phone.png" alt="Phone Icon" class="input-icon"> <!-- Phone icon -->
+                    
+                    <!-- Summary -->
+                    <h2>Summary</h2>
+                    <div class="summary-inputs">
+                        <input type="text" name="summary" placeholder="Add summary here...">
                     </div>
-                    <div class="input-container">
-                        <input type="text" placeholder="Location..." class="input-with-icon">
-                        <img src="icon/address.png" alt="Location Icon" class="input-icon"> <!-- Location icon -->
+                </div>
+
+                <!-- Education -->
+                <div class="section-style education-section draggable-section" id="education-section" draggable="true">
+                    <h2>Education</h2>
+                    <div class="education-inputs">
+                        <input type="text" name="education_school" placeholder="School Name...">
+                        <div class="date-container">
+                            <label for="education_start_date">Start Date</label>
+                            <input type="month" name="education_start_date" id="education_start_date" class="date-input">
+                            <span class="date-separator">➜</span>
+                            <label for="education_end_date">End Date</label>
+                            <input type="month" name="education_end_date" id="education_end_date" class="date-input">
+                        </div>
+                        <input type="text" name="education_location" placeholder="Location...">
+                        <input type="text" name="education_degree" placeholder="Degree & Majors...">
+                        <input type="text" placeholder="Awards & Coursework...">
                     </div>
-                    <div class="input-container">
-                        <input type="text" placeholder="LinkedIn URL..." class="input-with-icon">
-                        <img src="icon/linkedin.png" alt="LinkedIn Icon" class="input-icon"> <!-- LinkedIn icon -->
-                    </div>
-                    <div class="input-container">
-                        <input type="text" placeholder="Github URL..." class="input-with-icon">
-                        <img src="icon/github.png" alt="GitHub Icon" class="input-icon"> <!-- GitHub icon -->
-                    </div>
-                    <div class="input-container">
-                        <input type="text" placeholder="Other URL..." class="input-with-icon">
-                        <img src="icon/url.png" alt="Other URL Icon" class="input-icon"> <!-- Other URL icon -->
-                    </div>
+                    <button id="delete-education" style="background-color: #f44336;">- Delete</button>
+                    <button id="add-education" style="background-color: #4CAF50;">+ Education</button>
                 </div>
                 
-                
-                <!-- Summary -->
-                <h2>Summary</h2>
-                <div class="summary-inputs">
-                    <input type="text" placeholder="Add summary here...">
+                <!-- Experience -->
+                <div class="section-style experience-section draggable-section" id="experience-section" draggable="true">
+                    <h2>Experience</h2>
+                    <div class="experience-inputs">
+                        <input type="text" name="experience_company" placeholder="Company Name...">
+                        <div class="date-container">
+                            <label for="experience_start_date">Start Date</label>
+                            <input type="month" name="experience_start_date" id="experience_start_date" class="date-input">
+                            <span class="date-separator">➜</span>
+                            <label for="experience_end_date">End Date</label>
+                            <input type="month" name="experience_end_date" id="experience_end_date" class="date-input">
+                        </div>
+                        <input type="text" name="experience_location" placeholder="Location...">
+                        <input type="text" name="experience_position" placeholder="Job Title...">
+                        <div class="input-container">
+                            <input type="text" placeholder="Bullet Points..." class="input-with-icon">
+                            <img src="../static/icon/bullet.png" alt="Bullet Point Icon" class="input-icon" style="width: 15px; height: 15px;"> <!-- Bullet Point icon -->
+                        </div>
+                        <button id="add-experience-bullet-point" class="add-button">+ Bullet Points</button>
+                    </div>
+                    <button id="delete-experience" style="background-color: #f44336;">- Delete</button>
+                    <button id="add-experience" style="background-color: #4CAF50;">+ Experience</button>
+                </div>       
+
+                <!-- Projects -->
+                <div class="section-style projects-section draggable-section" id="projects-section" draggable="true">
+                    <h2>Projects</h2>
+                    <div class="projects-inputs">
+                        <input type="text" placeholder="Project Name...">
+                        <div class="date-container">
+                            <label for="project_start_date">Start Date</label>
+                            <input type="month" name="project_start_date" id="project_start_date" class="date-input">
+                            <span class="date-separator">➜</span>
+                            <label for="project_end_date">End Date</label>
+                            <input type="month" name="project_end_date" id="project_end_date" class="date-input">
+                        </div>
+                        <div class="input-container">
+                            <input type="text" placeholder="Bullet Points..." class="input-with-icon">
+                            <img src="../static/icon/bullet.png" alt="Bullet Point Icon" class="input-icon" style="width: 15px; height: 15px;"> <!-- Bullet Point icon -->
+                        </div>
+                        <button id="add-project-bullet-point" class="add-button">+ Bullet Points</button>
+                    </div>
+                    <button id="delete-projects" style="background-color: #f44336;">- Delete</button>
+                    <button id="add-projects" style="background-color: #4CAF50;">+ Projects</button>
                 </div>
-        
-            </div>
 
-            <!-- Education -->
-            <div class="section-style education-section draggable-section" id="education-section" draggable="true">
-                <h2>Education</h2>
-                <div class="education-inputs">
-                    <input type="text" placeholder="School Name...">
-                    <div class="date-container">
-                        <label for="start-date">Start Date</label>
-                        <input type="month" id="start-date" class="date-input">
-                        <span class="date-separator">➜</span>
-                        <label for="end-date">End Date</label>
-                        <input type="month" id="end-date" class="date-input">
+                <!-- Skills -->
+                <div class="section-style skills-section draggable-section" id="skills-section" draggable="true">
+                    <h2>Skills</h2>
+                    <div id="skills-tags" class="skills-tags"></div>
+                    <div class="skill-input">
+                        <input type="text" id="skill-input" placeholder="Add skill..." onkeyup="filterSkills(this.value)">
+                        <button id="add-skill-button" onclick="addCustomSkill()" style="background-color: #4CAF50;">+ Add</button>
+                        <div id="suggestions-box" class="suggestions-box"></div>
                     </div>
-                    <input type="text" placeholder="Location...">
-                    <input type="text" placeholder="Degree & Majors...">
-                    <input type="text" placeholder="Awards & Coursework...">
-                </div>
-                <button id="delete-education" style="background-color: #f44336;">- Delete</button>
-                <button id="add-education" style="background-color: #4CAF50;">+ Education</button>
-            </div>
-         
-
-            <!-- Experience -->
-            <div class="section-style experience-section draggable-section" id="experience-section" draggable="true">
-                <h2>Experience</h2>
-                <div class="experience-inputs">
-                    <input type="text" placeholder="Company Name...">
-                    <div class="date-container">
-                        <label for="start-date">Start Date</label>
-                        <input type="month" id="start-date" class="date-input">
-                        <span class="date-separator">➜</span>
-                        <label for="end-date">End Date</label>
-                        <input type="month" id="end-date" class="date-input">
-                    </div>
-                    <input type="text" placeholder="Location...">
-                    <input type="text" placeholder="Job Title...">
-                    <div class="input-container">
-                        <input type="text" placeholder="Bullet Points..." class="input-with-icon">
-                        <img src="icon/bullet.png" alt="Bullet Point Icon" class="input-icon" style="width: 15px; height: 15px;"> <!-- Bullet Point icon -->
-                    </div>
-                    <button id="add-experience-bullet-point" class="add-button">+ Bullet Points</button>
-                </div>
-                <button id="delete-experience" style="background-color: #f44336;">- Delete</button>
-                <button id="add-experience" style="background-color: #4CAF50;">+ Experience</button>
-            </div>       
-      
-
-            <!-- Projects -->
-            <div class="section-style projects-section draggable-section" id="projects-section" draggable="true">
-                <h2>Projects</h2>
-                <div class="projects-inputs">
-                    <input type="text" placeholder="Project Name...">
-                    <div class="date-container">
-                        <label for="start-date">Start Date</label>
-                        <input type="month" id="start-date" class="date-input">
-                        <span class="date-separator">➜</span>
-                        <label for="end-date">End Date</label>
-                        <input type="month" id="end-date" class="date-input">
-                    </div>
-                    <div class="input-container">
-                        <input type="text" placeholder="Bullet Points..." class="input-with-icon">
-                        <img src="icon/bullet.png" alt="Bullet Point Icon" class="input-icon" style="width: 15px; height: 15px;"> <!-- Bullet Point icon -->
-                    </div>
-                    <button id="add-project-bullet-point" class="add-button">+ Bullet Points</button>
-                </div>
-                <button id="delete-projects" style="background-color: #f44336;">- Delete</button>
-                <button id="add-projects" style="background-color: #4CAF50;">+ Projects</button>
-            </div>
-
-
-            <!-- Skills -->
-            <div class="section-style skills-section draggable-section" id="skills-section" draggable="true">
-                <h2>Skills</h2>
-                <div id="skills-tags" class="skills-tags"></div>
-                <div class="skill-input">
-                    <input type="text" id="skill-input" placeholder="Add skill..." onkeyup="filterSkills(this.value)">
-                    <button id="add-skill-button" onclick="addCustomSkill()" style="background-color: #4CAF50;">+ Add</button>
-                    <div id="suggestions-box" class="suggestions-box"></div>
                 </div>
             </div>
+            <div id="reference-line" style="display: none; height: 2px; background-color: #007bff; position: absolute; width: 100%; z-index: 10;"></div>
 
-            
-        </div>
-        <div id="reference-line" style="display: none; height: 2px; background-color: #007bff; position: absolute; width: 100%; z-index: 10;"></div>
+        </form>
     </div>
 
-    <script src="script.js"></script>
+    <script src="../static/script.js"></script>
 </body>
 
 </html>
