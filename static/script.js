@@ -41,7 +41,8 @@ const educationInputsHTML = `
     </div>
     <input type="text" placeholder="Location...">
     <input type="text" placeholder="Degree & Majors...">
-    <input type="text" placeholder="Awards & Coursework...">`; // Fill in with actual HTML content
+    <input type="text" placeholder="Coursework...">`;
+
 const experienceInputsHTML = `
     <input type="text" placeholder="Company Name...">
     <div class="date-container">
@@ -53,7 +54,12 @@ const experienceInputsHTML = `
     </div>
     <input type="text" placeholder="Location...">
     <input type="text" placeholder="Job Title...">
-    <input type="text" placeholder="Bullet Points...">`; // Fill in with actual HTML content
+    <div class="input-container">
+        <input type="text" name="experience_bullet_points" placeholder="Bullet Points..." class="input-with-icon">
+        <img src="../static/icon/bullet.png" alt="Bullet Point Icon" class="input-icon" style="width: 15px; height: 15px;">
+    </div>
+    <button id="add-experience-bullet-point" type="button" class="add-button">+ Bullet Points</button>`; 
+
 const projectsInputsHTML = `
     <input type="text" placeholder="Project Name...">
     <div class="date-container">
@@ -63,8 +69,13 @@ const projectsInputsHTML = `
         <label>End Date</label>
         <input type="month" class="date-input">
     </div>
-    <input type="text" placeholder="Bullet Points...">`; // Fill in with actual HTML content
+    <div class="input-container">
+        <input type="text" name="project_bullet_points" placeholder="Bullet Points..." class="input-with-icon">
+        <img src="../static/icon/bullet.png" alt="Bullet Point Icon" class="input-icon" style="width: 15px; height: 15px;">
+    </div>
+    <button id="add-project-bullet-point" type="button" class="add-button">+ Bullet Points</button>`;
 
+// Setup section controls for Education, Experience, and Projects
 function setupSectionControls(addButtonId, deleteButtonId, sectionClass, inputsClass, inputsHTML) {
     document.getElementById(addButtonId).addEventListener('click', function() {
         const container = document.querySelector('.' + sectionClass);
@@ -80,6 +91,12 @@ function setupSectionControls(addButtonId, deleteButtonId, sectionClass, inputsC
         }
 
         container.appendChild(newInputs);
+
+        // Attach event listener for the new "Add Bullet Points" button
+        const bulletPointButton = newInputs.querySelector('.add-button'); // Select the button using the class
+        bulletPointButton.addEventListener('click', function() {
+            addBulletPoint(bulletPointButton.parentNode); // Pass the parent container to the function
+        });
 
         const addButton = this;
         const deleteButton = document.getElementById(deleteButtonId);
@@ -109,7 +126,7 @@ function setupSectionControls(addButtonId, deleteButtonId, sectionClass, inputsC
     });
 }
 
-// "Initialize the button functionality for the Education, Experience, and Projects sections"
+// Initialize the button functionality for the Education, Experience, and Projects sections
 setupSectionControls('add-education', 'delete-education', 'education-section', 'education-inputs', educationInputsHTML);
 setupSectionControls('add-experience', 'delete-experience', 'experience-section', 'experience-inputs', experienceInputsHTML);
 setupSectionControls('add-projects', 'delete-projects', 'projects-section', 'projects-inputs', projectsInputsHTML);
@@ -141,7 +158,7 @@ function addBulletPoint(container) {
 
     // Create the bullet point icon
     const bulletIcon = document.createElement('img');
-    bulletIcon.src = 'icon/bullet.png'; // Ensure the path is correct
+    bulletIcon.src = 'static/icon/bullet.png'; // Ensure the path is correct
     bulletIcon.alt = 'Bullet Point Icon';
     bulletIcon.className = 'input-icon';
     bulletIcon.style.width = '15px'; // Set the desired width
@@ -149,7 +166,7 @@ function addBulletPoint(container) {
 
     // Create the delete icon
     const deleteIcon = document.createElement('img');
-    deleteIcon.src = 'icon/bin.png'; // Ensure the path is correct
+    deleteIcon.src = 'static/icon/bin.png'; // Ensure the path is correct
     deleteIcon.alt = 'Delete Icon';
     deleteIcon.className = 'delete-icon'; // Use a specific class for styling
     deleteIcon.style.width = '15px'; // Set the desired width
