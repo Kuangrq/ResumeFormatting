@@ -16,6 +16,19 @@ function updateName() {
     closeModal();
 }
 
+function updateFields() {
+    // Get the content of the editable <h2>
+    var nameContent = document.getElementById('editable-name').innerText;
+    // Set the value of the hidden input to the content of the <h2>
+    document.getElementById('name-input').value = nameContent;
+
+    // Get the content of the <h1>
+    var fileNameContent = document.getElementById('resume-title').innerText;
+    // Set the value of the hidden input to the content of the <h1>
+    document.getElementById('file-name-input').value = fileNameContent;
+}
+
+
 // Define HTML for new inputs for each section
 const educationInputsHTML = `
     <input type="text" placeholder="School Name...">
@@ -181,6 +194,10 @@ const skills = [
     "Data Visualization", "Business Intelligence", "SEO", "Digital Marketing"
 ];
 
+// Array to hold the added skills
+let skillsArray = [];
+
+// Function to filter skills based on user input
 function filterSkills(input) {
     const suggestionsBox = document.getElementById('suggestions-box');
     
@@ -190,14 +207,14 @@ function filterSkills(input) {
         return;
     }
 
+    // Example skills array for suggestions
+    // const allSkills = ['JavaScript', 'Python', 'Java', 'C++', 'HTML', 'CSS'];
     const suggestions = skills.filter(skill => skill.toLowerCase().startsWith(input.toLowerCase()));
+    
     suggestionsBox.innerHTML = '';  // Clear previous suggestions
 
-    if (suggestions.length > 0) {
-        suggestionsBox.style.display = 'block'; // Show the suggestions box
-    } else {
-        suggestionsBox.style.display = 'none'; // Hide the box if no suggestions
-    }
+    // Show or hide suggestions box based on the number of suggestions
+    suggestionsBox.style.display = suggestions.length > 0 ? 'block' : 'none';
 
     // Show suggestions
     suggestions.forEach(skill => {
@@ -212,6 +229,7 @@ function filterSkills(input) {
     });
 }
 
+// Function to add a skill from the dropdown or input
 function addSkill(skill) {
     const skillsTags = document.getElementById('skills-tags');
 
@@ -240,19 +258,39 @@ function addSkill(skill) {
     // Clear the input field and hide the suggestions box
     document.getElementById('skill-input').value = '';
     document.getElementById('suggestions-box').style.display = 'none';
+
+    // Add the skill to the skills array
+    if (!skillsArray.includes(skill)) {
+        skillsArray.push(skill);
+        updateSkillsInput();
+        displaySkills(); // Update the display
+    }
 }
 
+// Function to add a custom skill from the input field
 function addCustomSkill() {
-    const inputField = document.getElementById('skill-input');
-    const skill = inputField.value.trim(); // Get the user input and remove leading and trailing whitespace
-
-    if (skill === '') {
-        alert('Please enter a skill to add.'); // If the input is empty, prompt the user
-        return;
+    const skillInput = document.getElementById('skill-input');
+    const skill = skillInput.value.trim();
+    
+    if (skill) {
+        addSkill(skill); // Use the addSkill function to handle adding
     }
+}
 
-    // Call the addSkill function to add the custom skill to the skill tags
-    addSkill(skill);
+// Function to update the hidden input field with the skills
+function updateSkillsInput() {
+    document.getElementById('skills-input').value = skillsArray.join(', '); // Join skills with a comma
+}
+
+// Function to display skills on the page
+function displaySkills() {
+    const skillsTags = document.getElementById('skills-tags');
+    skillsTags.innerHTML = ''; // Clear existing skills
+    skillsArray.forEach(skill => {
+        const skillTag = document.createElement('span');
+        skillTag.textContent = skill;
+        skillsTags.appendChild(skillTag);
+    });
 }
 
 // Add event listeners for drag-and-drop
