@@ -24,38 +24,30 @@ def generate_resume():
     website = request.form.get('website')
     summary = request.form.get('summary')
 
-    # education data
-    education_school = request.form.get('education_school')
-    education_start_date = request.form.get('education_start_date')
-    education_end_date = request.form.get('education_end_date')
-    education_location = request.form.get('education_location')
-    education_degree = request.form.get('education_degree')
-    education_coursework = request.form.get('education_coursework')
+    # Collecting education data (assuming multiple entries)
+    education_schools = request.form.getlist('education_school[]')
+    education_start_dates = request.form.getlist('education_start_date[]')
+    education_end_dates = request.form.getlist('education_end_date[]')
+    education_locations = request.form.getlist('education_location[]')
+    education_degrees = request.form.getlist('education_degree[]')
+    education_courseworks = request.form.getlist('education_coursework[]')
 
-    # experience data
-    experience_company = request.form.get('experience_company')
-    experience_start_date = request.form.get('experience_start_date')
-    experience_end_date = request.form.get('experience_end_date')
-    experience_location = request.form.get('experience_location')
-    experience_position = request.form.get('experience_position')
-    experience_bullet_points = request.form.get('experience_bullet_points')
+    # Collecting experience data (assuming multiple entries)
+    experience_companies = request.form.getlist('experience_company[]')
+    experience_positions = request.form.getlist('experience_position[]')
+    experience_locations = request.form.getlist('experience_location[]')
+    experience_start_dates = request.form.getlist('experience_start_date[]')
+    experience_end_dates = request.form.getlist('experience_end_date[]')
+    experience_bullet_points = request.form.getlist('experience_bullet_points[]')
 
-    # project data
-    project_name = request.form.get('project_name')
-    project_start_date = request.form.get('project_start_date')
-    project_end_date = request.form.get('project_end_date')
-    project_bullet_points = request.form.get('project_bullet_points')
+    # Collecting project data (assuming multiple entries)
+    project_names = request.form.getlist('project_name[]')
+    project_start_dates = request.form.getlist('project_start_date[]')
+    project_end_dates = request.form.getlist('project_end_date[]')
+    project_bullet_points = request.form.getlist('project_bullet_points[]')
 
-    # Collecting skills (assuming skills are collected in a different way)
-    skills = request.form.getlist('skills')  # This will now work correctly
-
-    # Collecting user data
-    email = request.form.get('email')
-    phone = request.form.get('phone')
-    location = request.form.get('location')
-    linkedin = request.form.get('linkedin')
-    github = request.form.get('github')
-    website = request.form.get('website')
+    # Collecting skills
+    skills = request.form.getlist('skills')
 
     # Constructing author_info to include all relevant details in a tabular format
     author_info = []
@@ -99,25 +91,28 @@ def generate_resume():
 
     # Add Education Section without numbering
     with doc.create(Section('Education')):
-        doc.append(NoEscape(education_degree + r' \\ '))  
-        doc.append(NoEscape(education_school + r' \\ '))   
-        doc.append(NoEscape(education_location + r' \\ '))  
-        doc.append(NoEscape(f"({education_start_date} - {education_end_date})" + r' \\ '))  
-        doc.append(NoEscape(education_coursework + r' \\ ')) 
-    
+        for i in range(len(education_degrees)):
+            doc.append(NoEscape(education_degrees[i] + r' \\ '))  
+            doc.append(NoEscape(education_schools[i] + r' \\ '))   
+            doc.append(NoEscape(education_locations[i] + r' \\ '))  
+            doc.append(NoEscape(f"({education_start_dates[i]} - {education_end_dates[i]})" + r' \\ '))  
+            doc.append(NoEscape(education_courseworks[i] + r' \\ ')) 
+
     # Add Experience Section
     with doc.create(Section('Experience')):
-        doc.append(NoEscape(experience_company + r' \\ '))
-        doc.append(NoEscape(experience_position + r' \\ '))     
-        doc.append(NoEscape(experience_location + r' \\ '))  
-        doc.append(NoEscape(f"({experience_start_date} - {experience_end_date})" + r' \\ '))  
-        doc.append(NoEscape(experience_bullet_points + r' \\ ')) 
+        for i in range(len(experience_companies)):
+            doc.append(NoEscape(experience_companies[i] + r' \\ '))
+            doc.append(NoEscape(experience_positions[i] + r' \\ '))     
+            doc.append(NoEscape(experience_locations[i] + r' \\ '))  
+            doc.append(NoEscape(f"({experience_start_dates[i]} - {experience_end_dates[i]})" + r' \\ '))  
+            doc.append(NoEscape(experience_bullet_points[i] + r' \\ ')) 
 
     # Add Projects Section
     with doc.create(Section('Projects')):
-        doc.append(NoEscape(project_name + r' \\ '))  
-        doc.append(NoEscape(f"({project_start_date} - {project_end_date})" + r' \\ '))
-        doc.append(NoEscape(project_bullet_points + r' \\ '))  
+        for i in range(len(project_names)):
+            doc.append(NoEscape(project_names[i] + r' \\ '))  
+            doc.append(NoEscape(f"({project_start_dates[i]} - {project_end_dates[i]})" + r' \\ '))
+            doc.append(NoEscape(project_bullet_points[i] + r' \\ '))  
 
     # Add Skills Section
     with doc.create(Section('Skills')):

@@ -30,50 +30,98 @@ function updateFields() {
 
 
 // Define HTML for new inputs for each section
+// const educationInputsHTML = `
+//     <input type="text" placeholder="School Name...">
+//     <div class="date-container">
+//         <label>Start Date</label>
+//         <input type="month" class="date-input">
+//         <span class="date-separator">➜</span>
+//         <label>End Date</label>
+//         <input type="month" class="date-input">
+//     </div>
+//     <input type="text" placeholder="Location...">
+//     <input type="text" placeholder="Degree & Majors...">
+//     <input type="text" placeholder="Coursework...">`;
+
 const educationInputsHTML = `
-    <input type="text" placeholder="School Name...">
+    <input type="text" name="education_school[]" placeholder="School Name...">
     <div class="date-container">
-        <label>Start Date</label>
-        <input type="month" class="date-input">
+        <label for="education_start_date">Start Date</label>
+        <input type="month" name="education_start_date[]" id="education_start_date" class="date-input">
         <span class="date-separator">➜</span>
-        <label>End Date</label>
-        <input type="month" class="date-input">
+        <label for="education_end_date">End Date</label>
+        <input type="month" name="education_end_date[]" id="education_end_date" class="date-input">
     </div>
-    <input type="text" placeholder="Location...">
-    <input type="text" placeholder="Degree & Majors...">
-    <input type="text" placeholder="Coursework...">`;
+    <input type="text" name="education_location[]" placeholder="Location...">
+    <input type="text" name="education_degree[]" placeholder="Degree & Majors...">
+    <input type="text" name="education_coursework[]" placeholder="Coursework...">
+`;
+
+// const experienceInputsHTML = `
+//     <input type="text" placeholder="Company Name...">
+//     <div class="date-container">
+//         <label>Start Date</label>
+//         <input type="month" class="date-input">
+//         <span class="date-separator">➜</span>
+//         <label>End Date</label>
+//         <input type="month" class="date-input">
+//     </div>
+//     <input type="text" placeholder="Location...">
+//     <input type="text" placeholder="Job Title...">
+//     <div class="input-container">
+//         <input type="text" name="experience_bullet_points" placeholder="Bullet Points..." class="input-with-icon">
+//         <img src="../static/icon/bullet.png" alt="Bullet Point Icon" class="input-icon" style="width: 15px; height: 15px;">
+//     </div>
+//     <button id="add-experience-bullet-point" type="button" class="add-button">+ Bullet Points</button>`; 
 
 const experienceInputsHTML = `
-    <input type="text" placeholder="Company Name...">
+    <input type="text" name="experience_company[]" placeholder="Company Name...">
     <div class="date-container">
-        <label>Start Date</label>
-        <input type="month" class="date-input">
+        <label for="experience_start_date">Start Date</label>
+        <input type="month" name="experience_start_date[]" id="experience_start_date" class="date-input">
         <span class="date-separator">➜</span>
-        <label>End Date</label>
-        <input type="month" class="date-input">
+        <label for="experience_end_date">End Date</label>
+        <input type="month" name="experience_end_date[]" id="experience_end_date" class="date-input">
     </div>
-    <input type="text" placeholder="Location...">
-    <input type="text" placeholder="Job Title...">
+    <input type="text" name="experience_location[]" placeholder="Location...">
+    <input type="text" name="experience_position[]" placeholder="Job Title...">
     <div class="input-container">
-        <input type="text" name="experience_bullet_points" placeholder="Bullet Points..." class="input-with-icon">
-        <img src="../static/icon/bullet.png" alt="Bullet Point Icon" class="input-icon" style="width: 15px; height: 15px;">
+        <input type="text" name="experience_bullet_points[]" placeholder="Bullet Points..." class="input-with-icon">
+        <img src="../static/icon/bullet.png" alt="Bullet Point Icon" class="input-icon" style="width: 15px; height: 15px;"> <!-- Bullet Point icon -->
     </div>
-    <button id="add-experience-bullet-point" type="button" class="add-button">+ Bullet Points</button>`; 
+    <button id="add-experience-bullet-point" type="button" class="add-button">+ Bullet Points</button>
+`; 
+
+// const projectsInputsHTML = `
+//     <input type="text" placeholder="Project Name...">
+//     <div class="date-container">
+//         <label>Start Date</label>
+//         <input type="month" class="date-input">
+//         <span class="date-separator">➜</span>
+//         <label>End Date</label>
+//         <input type="month" class="date-input">
+//     </div>
+//     <div class="input-container">
+//         <input type="text" name="project_bullet_points" placeholder="Bullet Points..." class="input-with-icon">
+//         <img src="../static/icon/bullet.png" alt="Bullet Point Icon" class="input-icon" style="width: 15px; height: 15px;">
+//     </div>
+//     <button id="add-project-bullet-point" type="button" class="add-button">+ Bullet Points</button>`;
 
 const projectsInputsHTML = `
-    <input type="text" placeholder="Project Name...">
+    <input type="text" name="project_name[]" placeholder="Project Name...">
     <div class="date-container">
-        <label>Start Date</label>
-        <input type="month" class="date-input">
+        <label for="project_start_date">Start Date</label>
+        <input type="month" name="project_start_date[]" id="project_start_date" class="date-input">
         <span class="date-separator">➜</span>
-        <label>End Date</label>
-        <input type="month" class="date-input">
+        <label for="project_end_date">End Date</label>
+        <input type="month" name="project_end_date[]" id="project_end_date" class="date-input">
     </div>
     <div class="input-container">
-        <input type="text" name="project_bullet_points" placeholder="Bullet Points..." class="input-with-icon">
-        <img src="../static/icon/bullet.png" alt="Bullet Point Icon" class="input-icon" style="width: 15px; height: 15px;">
+        <input type="text" name="project_bullet_points[]" placeholder="Bullet Points..." class="input-with-icon">
+        <img src="../static/icon/bullet.png" alt="Bullet Point Icon" class="input-icon" style="width: 15px; height: 15px;"> <!-- Bullet Point icon -->
     </div>
-    <button id="add-project-bullet-point" type="button" class="add-button">+ Bullet Points</button>`;
+    <button id="add-project-bullet-point" type="button" class="add-button">+ Bullet Points</button>
+`;
 
 // Setup section controls for Education, Experience, and Projects
 function setupSectionControls(addButtonId, deleteButtonId, sectionClass, inputsClass, inputsHTML) {
@@ -93,10 +141,13 @@ function setupSectionControls(addButtonId, deleteButtonId, sectionClass, inputsC
         container.appendChild(newInputs);
 
         // Attach event listener for the new "Add Bullet Points" button
-        const bulletPointButton = newInputs.querySelector('.add-button'); // Select the button using the class
-        bulletPointButton.addEventListener('click', function() {
-            addBulletPoint(bulletPointButton.parentNode); // Pass the parent container to the function
-        });
+        if(addButtonId=='add-experience'||addButtonId=='add-projects'){
+            const bulletPointButton = newInputs.querySelector('.add-button'); // Select the button using the class
+            bulletPointButton.addEventListener('click', function() {
+                addBulletPoint(bulletPointButton.parentNode); // Pass the parent container to the function
+            });
+        }
+
 
         const addButton = this;
         const deleteButton = document.getElementById(deleteButtonId);

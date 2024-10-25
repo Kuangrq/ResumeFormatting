@@ -81,17 +81,17 @@
                 <div class="section-style education-section draggable-section" id="education-section" draggable="true">
                     <h2>Education</h2>
                     <div class="education-inputs">
-                        <input type="text" name="education_school" placeholder="School Name...">
+                        <input type="text" name="education_school[]" placeholder="School Name...">
                         <div class="date-container">
                             <label for="education_start_date">Start Date</label>
-                            <input type="month" name="education_start_date" id="education_start_date" class="date-input">
+                            <input type="month" name="education_start_date[]" id="education_start_date" class="date-input">
                             <span class="date-separator">➜</span>
                             <label for="education_end_date">End Date</label>
-                            <input type="month" name="education_end_date" id="education_end_date" class="date-input">
+                            <input type="month" name="education_end_date[]" id="education_end_date" class="date-input">
                         </div>
-                        <input type="text" name="education_location" placeholder="Location...">
-                        <input type="text" name="education_degree" placeholder="Degree & Majors...">
-                        <input type="text" name="education_coursework" placeholder="Coursework...">
+                        <input type="text" name="education_location[]" placeholder="Location...">
+                        <input type="text" name="education_degree[]" placeholder="Degree & Majors...">
+                        <input type="text" name="education_coursework[]" placeholder="Coursework...">
                     </div>
                     <!-- Delete Education Button -->
                     <button id="delete-education" type="button" style="background-color: #f44336;">- Delete</button>
@@ -103,18 +103,18 @@
                 <div class="section-style experience-section draggable-section" id="experience-section" draggable="true">
                     <h2>Experience</h2>
                     <div class="experience-inputs">
-                        <input type="text" name="experience_company" placeholder="Company Name...">
+                        <input type="text" name="experience_company[]" placeholder="Company Name...">
                         <div class="date-container">
                             <label for="experience_start_date">Start Date</label>
-                            <input type="month" name="experience_start_date" id="experience_start_date" class="date-input">
+                            <input type="month" name="experience_start_date[]" id="experience_start_date" class="date-input">
                             <span class="date-separator">➜</span>
                             <label for="experience_end_date">End Date</label>
-                            <input type="month" name="experience_end_date" id="experience_end_date" class="date-input">
+                            <input type="month" name="experience_end_date[]" id="experience_end_date" class="date-input">
                         </div>
-                        <input type="text" name="experience_location" placeholder="Location...">
-                        <input type="text" name="experience_position" placeholder="Job Title...">
+                        <input type="text" name="experience_location[]" placeholder="Location...">
+                        <input type="text" name="experience_position[]" placeholder="Job Title...">
                         <div class="input-container">
-                            <input type="text" name="experience_bullet_points" placeholder="Bullet Points..." class="input-with-icon">
+                            <input type="text" name="experience_bullet_points[]" placeholder="Bullet Points..." class="input-with-icon">
                             <img src="../static/icon/bullet.png" alt="Bullet Point Icon" class="input-icon" style="width: 15px; height: 15px;"> <!-- Bullet Point icon -->
                         </div>
                         <button id="add-experience-bullet-point" type="button" class="add-button">+ Bullet Points</button>
@@ -128,16 +128,16 @@
                 <div class="section-style projects-section draggable-section" id="projects-section" draggable="true">
                     <h2>Projects</h2>
                     <div class="projects-inputs">
-                        <input type="text" name="project_name" placeholder="Project Name...">
+                        <input type="text" name="project_name[]" placeholder="Project Name...">
                         <div class="date-container">
                             <label for="project_start_date">Start Date</label>
-                            <input type="month" name="project_start_date" id="project_start_date" class="date-input">
+                            <input type="month" name="project_start_date[]" id="project_start_date" class="date-input">
                             <span class="date-separator">➜</span>
                             <label for="project_end_date">End Date</label>
-                            <input type="month" name="project_end_date" id="project_end_date" class="date-input">
+                            <input type="month" name="project_end_date[]" id="project_end_date" class="date-input">
                         </div>
                         <div class="input-container">
-                            <input type="text" name="project_bullet_points" placeholder="Bullet Points..." class="input-with-icon">
+                            <input type="text" name="project_bullet_points[]" placeholder="Bullet Points..." class="input-with-icon">
                             <img src="../static/icon/bullet.png" alt="Bullet Point Icon" class="input-icon" style="width: 15px; height: 15px;"> <!-- Bullet Point icon -->
                         </div>
                         <button id="add-project-bullet-point" type="button" class="add-button">+ Bullet Points</button>
